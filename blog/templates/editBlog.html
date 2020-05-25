@@ -1,0 +1,42 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+
+    <section class="ftco-section">
+		<div class="box">
+             <h1 class="bread">Editar Blog Crianzas Complejas</h1>
+            <form method="POST" action="/editBlog?id={{ article.id }}">
+
+                <div class="title">
+                	Título<br />
+                    <div class="control">
+    					<textarea rows="2" cols="120" name="title" id="title" value="" placeholder="Pensando en un titulo de ley" maxlength="200" style="width: auto; height: auto;" class="input-xxlarg" >{{ article.title }}</textarea>
+    				</div>
+                </div>  
+
+                <div class="field">
+                    Descripcion<br />
+                    <div class="control">
+                        <textarea rows="3" cols="120" name="description" id="description" value="" placeholder="Descripcion" maxlength="300" style="width: auto; height: auto;" class="input-xxlarg" >{{ article.description }}</textarea>
+                    </div>
+                </div>
+
+               <div class="field">
+                    Texto HTML<br />
+                    <div class="control">
+                        <textarea rows="40" cols="120" name="htmlText" id="htmlText" value="" placeholder="Texto" maxlength="6000" style="width: auto; height: auto;" class="input-xxlarg" >{{ article.htmlText }}</textarea>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input type="checkbox" {% if article.is_published %}checked{% endif %} name="isPublished"> <label for="isPublished">Publicado?</label><br>
+                    </div>
+                </div>
+
+                <button class="button is-block is-info is-large is-fullwidth">Guardar</button>
+            </form>
+        </div>
+	</section>
+{% endblock %}

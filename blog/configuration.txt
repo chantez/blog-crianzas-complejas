@@ -1,0 +1,4 @@
+
+
+SECRET_KEY =  b'9OLWxND4o83j4K4iuopO'
+SQLALCHEMY_DATABASE_URI =  b'mysql://blog:info6.caez@localhost/blog'

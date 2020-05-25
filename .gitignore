@@ -1,0 +1,12 @@
+/.idea/
+blog/__init__.pyc
+blog/archives.pyc
+blog/articles.pyc
+blog/auth.pyc
+blog/blog.pyc
+blog/blog2.pyc
+blog/contextBlog.pyc
+blog/crudBlog.pyc
+blog/main.pyc
+blog/models.pyc
+blog/static/css/.DS_Store

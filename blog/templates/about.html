@@ -1,0 +1,30 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+	<section class="ftco-section-no-padding bg-light">
+		<div class="hero-wrap">
+			<div class="overlay"></div>
+			<div class="d-flex">
+				<div class="author-image text img p-md-5" style="background-image: url({{ url_for('static', filename='images/author.jpg')}});">
+					
+				</div>
+				<div class="author-info text p-4 p-md-5 mt-5 mb-5">
+					<div class="desc">
+						<span class="subheading">Encantado de conocerte</span>
+						<h1 class="big-letter">Mi nombre es Héctor Poblete</h1> 
+						<h1 class="mb-4"><span>Héctor Poblete</span> Un desarrollador de Software.</h1>
+						<p class="mb-4">Soy un programador que hace deporte, me interesa lo que sucede a mi alrededor, cómo nos afectan las aplicaciones durante su creación y el resultado sobre la sociedad. El desarrollo de aplicaciones Software es una tarea compleja, es un trabajo de equipo con personas que tienen diferentes habilidades y responsabilidades. ¿Es un trabajo tan dificil cómo los demás?</p>
+						<h3 class="signature h1">HPoblete01</h3>
+						<ul class="ftco-social mt-3">
+              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+            </ul>
+        </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

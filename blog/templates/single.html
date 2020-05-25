@@ -1,0 +1,37 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 ftco-animate">
+		            <h2 class="mb-3 font-weight-bold"> {{ article.title}} </h2>
+		            {{ article.htmlText|safe }}
+
+	    		</div> <!-- .col-md-8 -->
+		    	<div class="col-lg-4 sidebar ftco-animate bg-light">
+		           
+		            <div class="sidebar-box ftco-animate">
+			        	<h3 class="sidebar-heading">Archivos</h3>
+			         	
+				          	<div>
+								<select name="archiveSelect" id="archiveSelect" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+
+									<option value="volvo">Seleccionar un mes </option>
+									{% for archive in archives %}
+										
+								  		<option value="{{ url_for('blog.monthBlog', year=archive.yearNumber, month=archive.monthNumber) }}">&nbsp;{{ archive.monthName }} &nbsp; {{ archive.yearNumber }} &nbsp;({{ archive.count }})</option>
+								  	{% endfor %}
+								 
+								</select>
+							</div>
+				    </div>
+
+
+	      
+	    		</div><!-- END COL -->
+			</div>
+		</div>
+	</section>
+{% endblock %}

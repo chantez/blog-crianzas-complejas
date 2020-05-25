@@ -1,0 +1,79 @@
+{% extends "base2.html" %}
+
+{% block content %}
+	<section class="ftco-section ftco-bread">
+
+        <div class="container">
+            <div class="row no-gutters slider-text justify-content-center align-items-center">
+              <div class="col-md-8 ftco-animate">
+	                <p class="breadcrumbs"><span class="mr-2"><a href="{{ url_for('main.index') }}">Home</a></span> <span>Blog</span></p>
+	                <h1 class="bread">Editar Blog Crianzas Complejas</h1>
+	              	<h1 class="breadcrumbs"><a href="{{ url_for('crudBlog.createBlog') }}">
+	                        <span class="mr-2">Create</span>
+	                 </a></h1>
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row d-flex">
+				 <div class="col-lg-8">
+					<div class="row">
+
+						{% for article in articlesFound %}
+
+							<div class="blog-entry ftco-animate d-md-flex">
+								<div class="text text-2 p-4 col-md-12">
+			              			<h3 class="mb-2"><a href="{{ url_for('blog.single') }}?id={{ article.id }}">{{article.title}}</a></h3>
+			              			<div class="meta-wrap">
+											<p class="meta">
+							              		<span>Created: {{ article.date_created.strftime('%b %d %Y')}}</span>
+							              		{% if article.is_published %}
+							              			<span>Publicado: {{ article.date_publish.strftime('%b %d %Y')}}</span>
+							              		{% else %}
+							              			<span>No publicado</span>
+							              		{% endif %}
+							              	</p>
+			          				</div>
+					                <p class="mb-4">{{article.description}}</p>
+					                <p><a href="{{ url_for('crudBlog.editBlog') }}?id={{ article.id }}" class="btn-custom">Edit <span class="ion-ios-arrow-forward"> <a href="{{ url_for('blog.single') }}?id={{ article.id }}" class="btn-custom">View <span class="ion-ios-arrow-forward"> </span></a></p>
+					            </div>
+							</div>
+
+						{% endfor %}
+		    			
+				         <div class="col">
+				            <div class="block-27">
+				              <ul>
+				              	{% if prev_url %}
+				                	<li><a href="{{ prev_url }}&size={{ size }}">&lt;</a></li>
+				                {% endif %}
+
+				              	{% for pageOption in pageOptions %}
+				              		
+					                 {% if pageOption == page %}
+									    <li class="active"><span><a href="{{ url_for('crudBlog.listBlog') }}?size={{ size }}&page={{ pageOption }}">{{ pageOption }}</a></span></li>
+									  {% else %}
+									    <li><span><a href="{{ url_for('crudBlog.listBlog') }}?size={{ size }}&page={{ pageOption }}">{{ pageOption }}</a></span></li>
+									  {% endif %}
+					                
+					            {% endfor %}
+					             {% if next_url %}
+				                	<li><a href="{{ next_url }}&size={{ size }}">&gt;</a></li>
+				                {% endif %}
+				              </ul>
+				            </div>
+				        </div>
+				    </div>
+		    	</div>
+				<div class="col-lg-4 sidebar ftco-animate bg-light">
+
+			        
+		       
+		    	</div><!-- END COL -->
+			</div>
+		</div>
+	</section>
+{% endblock %}

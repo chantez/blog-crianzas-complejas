@@ -1,0 +1,113 @@
+{% extends "base2.html" %}
+
+{% block content %}
+	<section class="ftco-section ftco-bread">
+
+        <div class="container">
+            <div class="row no-gutters slider-text justify-content-center align-items-center">
+              <div class="col-md-8 ftco-animate">
+	                <p class="breadcrumbs"><span class="mr-2"><a href="{{ url_for('main.index') }}">Home</a></span> <span>Blog</span></p>
+	                <h1 class="bread">Blog Crianzas Complejas</h1>
+	                {% if current_user.is_authenticated %}
+		              	<h1 class="breadcrumbs"><a href="{{ url_for('crudBlog.listBlog') }}">
+		                        <span class="mr-2">Create and edit</span>
+		                 </a></h1>
+		            {% endif %}
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row d-flex">
+				 <div class="col-lg-8">
+				 	{% if year > 0 and month > 0 %}
+				 	<h2 class="bread">mes: {{ monthStr }} {{ year }}</h1>
+				 	{% endif %}
+
+					<div class="row">
+
+						{% for article in articlesFound %}
+
+							<div class="blog-entry ftco-animate d-md-flex">
+								<div class="text text-2 p-4 col-md-12">
+			              			<h3 class="mb-2"><a href="{{ url_for('blog.single') }}?id={{ article.id }}">{{article.title}}</a></h3>
+			              			<div class="meta-wrap">
+											<p class="meta">
+							              		<span>{{ article.date_publish.strftime('%b %d %Y')}}</span>
+							              	</p>
+			          				</div>
+					                <p class="mb-4">{{article.description}}</p>
+					                <p><a href="{{ url_for('blog.single') }}?id={{ article.id }}" class="btn-custom">Ver más <span class="ion-ios-arrow-forward"> </span></a></p>
+					            </div>
+							</div>
+
+						{% endfor %}
+		    			
+				         <div class="col">
+				            <div class="block-27">
+				              <ul>
+				              	{% if prev_url %}
+				                	<li><a href="{{ prev_url }}&size={{ size }}">&lt;</a></li>
+				                {% endif %}
+
+				                {% if year == 0 or month == 0 %}
+					              	{% for pageOption in pageOptions %}
+					              		
+						                {% if pageOption == page %}
+										    <li class="active"><span><a href="{{ url_for('blog.mainBlog') }}?size={{ size }}&page={{ pageOption }}">{{ pageOption }}</a></span></li>
+										{% else %}
+										    <li><span><a href="{{ url_for('blog.mainBlog') }}?size={{ size }}&page={{ pageOption }}">{{ pageOption }}</a></span></li>
+										{% endif %}
+								
+						                
+						            {% endfor %}
+						        {% endif %}
+
+						        {% if year > 0 and month > 0 %}
+						        	{% for pageOption in pageOptions %}
+					            		{% if pageOption == page %}
+									    <li class="active"><span><a href="{{ url_for('blog.monthBlog', year=year, month=month) }}?size={{ size }}&page={{ pageOption }}">{{ pageOption }}</a></span></li>
+									  {% else %}
+									    <li><span><a href="{{ url_for('blog.monthBlog', year=year, month=month) }}?size={{ size }}&page={{ pageOption }}">{{ pageOption }}</a></span></li>
+									  {% endif %}
+									{% endfor %}
+						        {% endif %}
+
+					            {% if next_url %}
+				                	<li><a href="{{ next_url }}&size={{ size }}">&gt;</a></li>
+				                {% endif %}
+				              </ul>
+				            </div>
+				        </div>
+				    </div>
+		    	</div>
+				<div class="col-lg-4 sidebar ftco-animate bg-light">
+
+			        <div class="sidebar-box ftco-animate">
+			        	<h3 class="sidebar-heading">Archivos</h3>
+			         	
+				          	<div>
+								<select name="archiveSelect" id="archiveSelect" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+
+									{% if year == 0 and month == 0 %}
+										<option value="volvo">Seleccionar un mes </option>
+									{% endif %}
+									{% for archive in archives %}
+										{% if year == archive.yearNumber|int and month == archive.monthNumber|int %}
+								  			<option value="{{ url_for('blog.monthBlog', year=archive.yearNumber, month=archive.monthNumber) }}" selected>&nbsp;{{ archive.monthName }} &nbsp; {{ archive.yearNumber }} &nbsp;({{ archive.count }})</option>
+								  		{% else %}
+								  			<option value="{{ url_for('blog.monthBlog', year=archive.yearNumber, month=archive.monthNumber) }}">&nbsp;{{ archive.monthName }} &nbsp; {{ archive.yearNumber }} &nbsp;({{ archive.count }})</option>
+								  		{% endif %}
+								  	{% endfor %}
+								 
+								</select>
+							</div>
+				    </div>
+		       
+		    	</div><!-- END COL -->
+			</div>
+		</div>
+	</section>
+{% endblock %}
