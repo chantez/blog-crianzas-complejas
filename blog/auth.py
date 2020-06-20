@@ -36,7 +36,7 @@ def login_post():
         flash('Please check your login details and try again.')
         return redirect(url_for('auth.login')) # if user doesn't exist or password is wrong, reload the page
 
-    if not email == 'hector.poblete@usach.cl':
+    if not email == 'hector.poblete@usach.cl' and not email == 'hectornicolas01@gmail.com':
         flash('Please check email login details and try again.')
         return redirect(url_for('auth.login')) # if user doesn't exist or password is wrong, reload the page
 
@@ -57,7 +57,7 @@ def signup_post():
         flash('Email address already exists')
         return redirect(url_for('auth.signup'))
 
-    if not email == 'hector.poblete@usach.cl':
+    if not email == 'hector.poblete@usach.cl' and not email == 'hectornicolas01@gmail.com':
         flash('no valid email.')
         return redirect(url_for('auth.signup'))
 

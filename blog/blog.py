@@ -79,14 +79,12 @@ def single():
     print(id)
     article = Article.query.filter_by(id=id).first()
     
-    print(article)
     return render_template('single.html', selected = 'blog', article=article, archives=getArchives(False))
 
 def handleBlogPage(page, size, articlesFound, year, month):
     
 
-    print(articlesFound)
-    
+
     if(year > 0 and month > 0):
         next_url = url_for('blog.monthBlog', year=year, month=month, page=articlesFound.next_num) \
             if articlesFound.has_next else None

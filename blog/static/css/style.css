@@ -7299,7 +7299,9 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #ccb78f; }
+  color: #555555;
+  text-decoration: underline;
+  }
   a:hover, a:focus {
     text-decoration: none;
     color: #ccb78f;
@@ -8752,3 +8754,4 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
